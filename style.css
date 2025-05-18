@@ -1,0 +1,208 @@
+/* style.css */
+/* ---- ESTILO FONDO Y LAYOUT ---- */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #181824;
+  color: #fff;
+  font-family: 'Montserrat', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* ← Esto centra VERTICAL y HORIZONTAL */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  max-width: 1200px;
+  align-items: flex-start;
+}
+.pointer {
+  position: relative;  /* Ya no es absolute */
+  /* left y top se eliminan */
+  /* transform se elimina */
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 38px solid #fbbf24;
+  border-bottom: none;
+  filter: drop-shadow(0 4px 8px #0008);
+  margin-bottom: -8px; /* Ajusta para pegar la flecha al círculo */
+  z-index: 2;
+}
+
+.wheel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* ← Esto centra hijos horizontalmente */
+  position: relative;
+}
+/* El contenedor de la ruleta */
+#wheel-container {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  margin-bottom: 1rem;
+}
+
+
+
+
+/* Ganador en el centro */
+#winner-name {
+  position: absolute;
+  width: 100%;
+  top: 45%;
+  left: 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffe062;
+  text-shadow: 1px 2px 7px #000, 0 0 8px #333;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+#spin-btn {
+  padding: 0.9rem 2.3rem;
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(90deg,#ffb6b9,#f8e9a1,#b5ead7,#c7ceea,#ffd6e0);
+  color: #2c2839;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: 0 2px 16px #0005;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: filter .2s;
+}
+#spin-btn:active { filter: brightness(0.95); }
+
+.side-panel {
+  min-width: 320px;
+  background: #22223b;
+  border-radius: 1.5rem;
+  padding: 2rem 1.2rem;
+  box-shadow: 0 6px 32px #0004;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 360px;
+}
+
+.side-panel h2 { font-size: 1.5rem; margin-top: 0; color: #ffc6ff; }
+#participants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 120px;
+}
+.participant {
+  background: #282846;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem 0;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  cursor: grab;
+  transition: background .15s;
+  font-size: 1rem;
+}
+.participant.dragging { opacity: 0.5; }
+.participant input {
+  background: #22223b;
+  border: none;
+  color: #ffe062;
+  font-weight: bold;
+  width: 85px;
+  border-radius: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  margin-right: .7rem;
+}
+.participant-name { flex: 1; font-weight: 600; letter-spacing: 1px;}
+.action-btn {
+  background: #ffb6b9;
+  border: none;
+  border-radius: 1rem;
+  margin-left: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  color: #22223b;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .12s;
+}
+.action-btn.edit { background: #c7ceea; }
+.action-btn.delete { background: #e25a5a; }
+.action-btn.drag { background: #b5ead7; }
+.action-btn:active { filter: brightness(0.9); }
+
+#add-form {
+  display: flex;
+  gap: 0.5rem;
+}
+#add-input {
+  flex: 1;
+  padding: 0.4rem 0.9rem;
+  border-radius: 1rem;
+  border: none;
+  background: #232342;
+  color: #fff8;
+  font-size: 1rem;
+}
+#add-form button {
+  background: #ffe062;
+  color: #22223b;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.4rem 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+#add-form button:active { filter: brightness(0.9); }
+
+#winners-history { margin-top: 2.1rem;}
+#winners-history h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  color: #b5ead7;
+}
+#history-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+  color: #fff9;
+}
+#history-list li { margin-bottom: 0.2rem; }
+
+/* --- CONFETTI CANVAS --- */
+#confetti-canvas {
+  position: fixed;
+  pointer-events: none;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 10000;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .side-panel { width: 95vw; max-width: none; }
+}
+@media (max-width: 480px) {
+  #wheel-container { width: 95vw; height: 95vw; max-width: 320px; max-height: 320px;}
+  .side-panel { padding: 1.1rem 0.4rem; }
+}

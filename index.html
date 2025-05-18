@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta de la Suerte Casino</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Ruleta y flecha -->
+    <div class="wheel-section">
+  <div class="pointer"></div>
+  <div id="wheel-container">
+    <svg id="wheel" viewBox="0 0 500 500"></svg>
+    <div id="winner-name"></div>
+  </div>
+  <button id="spin-btn">Girar</button>
+</div>
+    <!-- Panel derecho: lista participantes -->
+    <div class="side-panel">
+      <h2>Participantes</h2>
+      <div id="participants-list"></div>
+      <form id="add-form">
+        <input type="text" id="add-input" maxlength="25" placeholder="Nuevo participante" autocomplete="off">
+        <button type="submit">Agregar</button>
+      </form>
+      <div id="winners-history">
+        <h3>Historial</h3>
+        <ul id="history-list"></ul>
+      </div>
+    </div>
+  </div>
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+  <!-- Sonido corneta -->
+  <audio id="horn-sound" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6f8e674.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
